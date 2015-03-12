@@ -1,0 +1,18 @@
+{% extends "new_base.html" %}
+{% block content %}
+<table class="table">
+	<tr>
+		<th><center>Book Name</center></th>
+	</tr>
+	{% for b_c in issued %}
+	<form method="POST" action="/libapp/book_view/">{% csrf_token %}
+	<tr>
+		<td>{{ b_c.book.book_title }}</td>
+		<td><input class="btn btn-primary" type="submit" value="Return" />
+			<input type="hidden" value="{{ b_c.id}}" name="bum_id"/>
+		</td>
+	</tr>
+	</form>
+	{% endfor %}
+</table>
+{% endblock %}

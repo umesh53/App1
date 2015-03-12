@@ -1,0 +1,22 @@
+{% extends "regi_base.html" %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            	<form method="POST" class="form-group" id="regi_login">
+            		<div class="form-group">
+					{% csrf_token %}
+						{{ form.as_p }}
+					<br>
+					<input type="submit" value="submit" class="form-control btn btn-primary">
+				</div>
+				</form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('input').addClass('form-control');
+	})
+</script>
+{% endblock %}

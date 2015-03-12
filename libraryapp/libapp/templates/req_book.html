@@ -1,0 +1,36 @@
+{% extends "new_base.html" %}
+{% block content %}
+	<form>
+      
+  </form>
+		<table class="display" id="myTable">
+			<thead>
+				<tr>
+					<th><center>Search a book: <form><input class="btn btn-default" type="search" name="searchbooks" value="{{ b_ss.book_title }}"/>
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span></form></center>
+					</th>
+					<th></th>
+				</tr>
+				<tr>
+					<th><center>Book Title</center></th>
+					<th><center>Get this book</center></th>
+				</tr>
+			</thead>
+			{% for b_s in book_search %}
+			<form method="POST" action="/libapp/req_book/">{% csrf_token %}
+			<tbody>
+				<tr>
+					<td><center>{{ b_s.book_title }}</center></td>
+					<td>
+						<center>
+							<input type="hidden" name="book_id" value="{{b_s.id}}">
+							<input type="submit" value = "Issue" class="btn btn-primary"/>
+						</center>
+					</td>
+				</tr>
+			</tbody>
+			</form>
+			{% endfor %}
+
+		</table>
+{% endblock %}

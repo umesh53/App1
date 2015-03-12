@@ -1,0 +1,21 @@
+{% extends "new_base.html" %}
+{% block content %}
+<table class="table">
+		<tr>
+			<th><center>S. No</center></th>
+			<th><center>User Name</center></th>
+			<th>Activate/Deactivate</th>
+			<th></th>
+			<th></th>
+		</tr>
+	{% for s in users %}
+		<tr>
+			<td><center>{{ s.id }}</center><br /></td>
+			<td><center>{{ s.username }}</center><br /></td>
+			<td><form method="POST">{% csrf_token %}<input type="hidden" name="submit_type" value="ac"><input type="hidden" name="id" value="{{ s.id }}"><input type="submit" value="{% if s.additionaldetails.is_valid %}Deactivate{% else %}Activate{% endif %}" class="btn {% if s.additionaldetails.is_valid %}btn-danger{% else %}btn-success{% endif %}"></form></td>
+			<td><form method="POST">{% csrf_token %}<input type="hidden" name="submit_type" value="del"><input type="hidden" name="id" value="{{ s.id }}"><input type="submit" value="delete" class="btn btn-danger"></form></td>
+			<td><a class="btn btn-primary" href="/libapp/users?id={{s.id}}">Edit</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}

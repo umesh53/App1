@@ -1,0 +1,14 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="static/css/videos1.css" />
+</head>
+<body>
+	<div id="pageContainer">
+		<div id="nav_top_right">
+			{% if user.is_authenticated %}<p><a href="/logout/">Logout</a></p>{% else %}<p><a href="/login/"></a>Login</p>{% endif %}
+		</div>
+		{% block content %}
+		{% endblock %}
+	</div>
+</body>
+</html>

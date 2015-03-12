@@ -1,0 +1,44 @@
+{% extends "new_base.html" %}
+{% block content %}
+{% load check_group %}
+<div class="table-responsive">
+	<table class="display table-bordered" cellspacing="0" width="100%" id="myTable">
+		<thead>
+			<tr>
+				<th><center>S. No</center></th>
+				<th><center>Book Title</center></th>
+				<th><center>Published Date</center></th>
+				<th><center>ISBN Number</center></th>
+				<th><center>Book Author</center></th>
+				<th><center>Book Category</center></th>
+				<th><center>Total Books</center></th>
+				<th><center>Available Books</center></th>
+				<th><center>Delete</center></th>
+				<th><center>Edit</center></th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			{% for b in books %}
+			<tr>
+				<td><center>{{ b.id }}</center></td>
+				<td><center>{{ b.book_title }}</center></td>
+				<td><center>{{ b.date_of_pub }}</center></td>
+				<td><center>{{ b.isbn_number }}</center></td>
+				<td><center>{{ b.book_author }}</center></td>
+				<td><center>{{ b.book_category }}</center></td>
+				<td><center>{{ b.qty_in_lib }}</center></td>
+				<td><center>{{ b.available_books }}</center></td>
+				{% if request.user.additionaldetails.is_librarian %}
+				<td><form method="POST">{% csrf_token %}<input type="hidden" name="id" value="{{ b.id }}"><input type="submit" value="Delete" class="btn btn-danger"></form></td>
+				<td><a class="btn btn-primary" href="/libapp/addpage?id={{b.id}}">Edit</td>
+				{% endif%}
+			</tr>
+			{% endfor %}
+		</tbody>
+		
+	</table>
+</div>
+
+{% endblock %}
+

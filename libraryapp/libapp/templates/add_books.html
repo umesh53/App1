@@ -1,0 +1,12 @@
+{% extends "new_base.html" %}
+{% block content %}
+
+<form method="POST">
+	{% csrf_token %}
+		<table class="table table-bordered" id="myTable">
+			{{ form.as_table }}
+		</table>
+	<center><input type="submit" value="submit" class="btn btn-success"></center>
+</form>
+<center><a href="/libapp/main/" class="btn btn-primary">Go back to main page</a></center>
+{% endblock %}
